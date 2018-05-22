@@ -6,5 +6,4 @@ describe 'perforce' do
 
   it { should contain_yumrepo('perforce') }
 
-  it { should contain_package('')}
 end
