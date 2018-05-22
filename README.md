@@ -1,4 +1,5 @@
 # perforce
+[![Build Status](https://travis-ci.org/mmarseglia/puppet-perforce.svg?branch=master)](https://travis-ci.org/mmarseglia/puppet-perforce)
 
 #### Table of Contents
 
