@@ -6,4 +6,6 @@ describe 'perforce' do
 
   it { should contain_yumrepo('perforce') }
 
+  it { should contain_package('perforce-server') }
+  it { should contain_package('perforce-cli') }
 end
