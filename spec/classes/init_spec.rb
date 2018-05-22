@@ -1,6 +1,7 @@
 require "#{File.join(File.dirname(__FILE__),'..','spec_helper')}"
 
 describe 'perforce' do
+  it { should compile }
 
   it { should contain_user('perforce') }
 
