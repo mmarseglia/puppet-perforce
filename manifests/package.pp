@@ -4,11 +4,9 @@
 # Install the perforce packages
 #
 class perforce::package {
-  package { 'perforce-server':
-    ensure  => installed,
-  }
+  $packages = ['helix-p4dctl', 'helix-proxy', 'helix-broker', 'helix-cli', 'helix-p4d' ]
 
-  package { 'perforce-cli':
+  package { $packages:
     ensure  => installed,
   }
 }
