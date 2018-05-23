@@ -7,7 +7,7 @@ describe 'perforce' do
       class { 'perforce': }
     MANIFEST
 
-    it 'apply manifest' do
+    it 'should apply manifest without failures' do
       apply_manifest(pp,
                      catch_failures: true,
                      debug: true)
@@ -16,5 +16,11 @@ describe 'perforce' do
     it 'should have package installed' do
         rpm_results = shell("rpm -qa | grep helix-p4d")
         expect(rpm_results.exit_code).to eq 0
+    end
+
+    it 'should be idempotent' do
+      apply_manifest(pp,
+                     catch_changes: true,
+                     debug: true)
     end
   end
