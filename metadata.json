@@ -1,6 +1,6 @@
 {
   "name": "puppet-perforce",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "mmarseglia",
   "summary": "Perforce client and server",
   "license": "GPL-3.0+",
@@ -16,8 +16,10 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem":"CentOS",
-      "operatingsystemrelease":[ "7" ]
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
     }
   ]
 }
