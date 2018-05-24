@@ -4,12 +4,21 @@
 # install and configure perforce
 #
 class perforce (
-  String $user
+  String $user,
+  String $service_name,
+  String $service_password,
+  String $service_port,
+  String $service_root,
 ){
 
-  include perforce::user
+  contain perforce::repository
+  contain perforce::package
+  contain perforce::install
+  contain perforce::service
 
-  class { 'perforce::repository' : }
-  -> class { 'perforce::package' : }
+  Class['::perforce::repository']
+  -> Class['::perforce::package']
+  -> Class['::perforce::install']
+  ~> Class['::perforce::service']
 
 }

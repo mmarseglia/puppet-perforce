@@ -1,0 +1,44 @@
+<%- |
+      String $user,
+      String $root,
+      String $port,
+      String $name,
+| -%>
+# Example Perforce systemd file (p4d.service):
+#
+# This service file will start Perforce at boot, and
+# provide everything needed to use systemctl to control
+# the Perforce server process.
+
+[Unit]
+# Note that descriptions are limited to 80 characters:
+Description=Perforce Server
+
+# Starts Perforce only after the network services are
+# ready:
+After=network.target
+
+[Service]
+# The type should always be set to "forking" to support
+# multiple Perforce processes:
+Type=forking
+
+# Set the system user used to launch this process (usually
+# 'perforce':
+User=<%= $user %>
+
+# The command used to start Perforce:
+# -r root         set the root directory
+# -p port         set the listen port
+# -d daemon       run as a daemon, fork first
+# -In name        service name
+# --pid-file      create a PID file for systemd
+ExecStart=/usr/sbin/p4d -r <%= $root %> -p <%= $::networking['ip'] %>:<%= $port %> -In <%= $name %> -d --pid-file=<%= $root %>/<%= $name %>.pid
+
+# PID file for stopping/starting service
+PIDFile=<%= $root %>/<%= $name %>.pid
+
+[Install]
+# Describes the target for this service -- this will always
+# be 'multi-user.target':
+WantedBy=multi-user.target
