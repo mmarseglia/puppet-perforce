@@ -9,7 +9,9 @@ describe 'install and configure perforce' do
     MANIFEST
   end
 
-  it_behaves_like 'an idempotent resource'
+  it 'applies with no errors' do
+    apply_manifest(pp, catch_failures: true, debug: true)
+  end
 
   it 'should have packages installed' do
     rpm_results = shell("rpm -qa | grep helix-p4d")
@@ -20,4 +22,9 @@ describe 'install and configure perforce' do
     it { should be_enabled }
     it { should be_running }
   end
+
+  it 'applies a second time without changes'  do
+    apply_manifest(pp, catch_changes: true)
+  end
+
 end

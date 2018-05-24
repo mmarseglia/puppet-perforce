@@ -2,6 +2,7 @@
       String $user,
       String $root,
       String $port,
+      String $name,
 | -%>
 # Example Perforce systemd file (p4d.service):
 #
@@ -27,7 +28,15 @@ Type=forking
 User=<%= $user %>
 
 # The command used to start Perforce:
-ExecStart=/usr/bin/p4d -r <%= $root %> -p <%= $::networking['ip'] %>:<%= $port %> -d
+# -r root         set the root directory
+# -p port         set the listen port
+# -d daemon       run as a daemon, fork first
+# -In name        service name
+# --pid-file      create a PID file for systemd
+ExecStart=/usr/sbin/p4d -r <%= $root %> -p <%= $::networking['ip'] %>:<%= $port %> -In <%= $name %> -d --pid-file=<%= $root %>/<%= $name %>.pid
+
+# PID file for stopping/starting service
+PIDFile=<%= $root %>/<%= $name %>.pid
 
 [Install]
 # Describes the target for this service -- this will always

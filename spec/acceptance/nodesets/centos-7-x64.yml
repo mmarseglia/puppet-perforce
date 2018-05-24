@@ -8,3 +8,4 @@ HOSTS:
     box: centos/7
 CONFIG:
   type: foss
+  preserve_hosts: onfail

@@ -25,6 +25,7 @@ class perforce::install {
       'user' => $perforce::user,
       'root' => $perforce::service_root,
       'port' => $perforce::service_port,
+      'name' => $perforce::service_name,
     }),
   }
   ~> exec { 'systemd refresh p4d.service':

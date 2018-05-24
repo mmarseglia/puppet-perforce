@@ -14,13 +14,11 @@ class perforce (
   contain perforce::repository
   contain perforce::package
   contain perforce::install
-  contain perforce::configure
   contain perforce::service
 
   Class['::perforce::repository']
   -> Class['::perforce::package']
   -> Class['::perforce::install']
-  -> Class['::perforce::configure']
   ~> Class['::perforce::service']
 
 }
