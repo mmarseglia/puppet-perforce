@@ -24,7 +24,6 @@ class perforce::install {
     content => epp('perforce/p4d.service.epp', {
       'user' => $perforce::user,
       'root' => $perforce::service_root,
-      'port' => $perforce::service_port,
       'name' => $perforce::service_name,
     }),
   }
