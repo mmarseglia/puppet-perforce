@@ -50,6 +50,8 @@ GEM
     beaker-hostgenerator (1.1.12)
       deep_merge (~> 1.0)
       stringify-hash (~> 0.0.0)
+    beaker-module_install_helper (0.1.7)
+      beaker (>= 2.0)
     beaker-openstack (0.2.0)
       fog-openstack
       stringify-hash (~> 0.0.0)
@@ -271,6 +273,7 @@ PLATFORMS
 
 DEPENDENCIES
   beaker
+  beaker-module_install_helper
   beaker-rspec
   facter (>= 1.7.0)
   metadata-json-lint

@@ -1,7 +1,6 @@
 <%- |
       String $user,
-      String $root,
-      String $name,
+      String $pidfile,
 | -%>
 # Example Perforce systemd file (p4d.service):
 #
@@ -18,6 +17,9 @@ Description=Perforce Server
 After=network.target
 
 [Service]
+# Environment variables
+EnvironmentFile=/opt/perforce/.p4config
+
 # The type should always be set to "forking" to support
 # multiple Perforce processes:
 Type=forking
@@ -27,15 +29,10 @@ Type=forking
 User=<%= $user %>
 
 # The command used to start Perforce:
-# -r root         set the root directory
-# -p port         set the listen port
-# -d daemon       run as a daemon, fork first
-# -In name        service name
-# --pid-file      create a PID file for systemd
-ExecStart=/usr/sbin/p4d
+ExecStart=/usr/sbin/p4d $P4OPTIONS
 
 # PID file for stopping/starting service
-PIDFile=<%= $root %>/<%= $name %>.pid
+PIDFile=<%= $pidfile %>
 
 [Install]
 # Describes the target for this service -- this will always
