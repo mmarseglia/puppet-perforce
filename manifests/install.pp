@@ -22,10 +22,8 @@ class perforce::install {
     owner   => 'root',
     group   => 'root',
     content => epp('perforce/p4d.service.epp', {
-      'user' => $perforce::user,
-      'root' => $perforce::service_root,
-      'port' => $perforce::service_port,
-      'name' => $perforce::service_name,
+      'user'    => $perforce::user,
+      'pidfile' => "${perforce::service_root}/${perforce::service_name}.pid",
     }),
   }
   ~> exec { 'systemd refresh p4d.service':
