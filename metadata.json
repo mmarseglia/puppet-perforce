@@ -1,6 +1,6 @@
 {
   "name": "puppet-perforce",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "mmarseglia",
   "summary": "Perforce client and server",
   "license": "GPL-3.0+",
