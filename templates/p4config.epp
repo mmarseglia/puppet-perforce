@@ -3,7 +3,7 @@
   String $root,
   String $name,
   String $pidfile,
-  String $ssldir,
+  Optional[String] $ssldir,
 | -%>
 # THIS FILE MANAGED BY PUPPET - DO NOT MODIFY
 #
@@ -16,16 +16,19 @@
 # --pid-file      create a PID file for systemd
 P4OPTIONS="-d --pid-file=<%= $pidfile %>"
 
-# port p4d runs on
-P4PORT=<%= $port %>
-
 # perforce root directory
 P4ROOT="<%= $root %>"
 
 # name of the p4d service
 P4NAME="<%= $name %>"
-<% if is_absolute_path($ssldir) {-%>
+<% if $ssldir {-%>
 
 # Enables SSL for the p4d service, requires certificate files to be present.
 P4SSLDIR="<%= $ssldir %>"
+
+# port p4d runs on
+P4PORT=ssl:<%= $port %>
+<% } else { -%>
+# port p4d runs on
+P4PORT=<%= $port %>
 <% } -%>

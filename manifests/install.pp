@@ -2,19 +2,6 @@
 #
 class perforce::install {
 
-  user { $perforce::user:
-    ensure     => present,
-    home       => $perforce::service_root,
-    managehome => true,
-    system     => true,
-  }
-  # directory for perforce data
-  -> file { $perforce::service_root:
-    ensure => directory,
-    owner  => $perforce::user,
-    mode   => '0750',
-  }
-
   # systemd template
   file { '/etc/systemd/system/p4d.service':
     ensure  => present,
