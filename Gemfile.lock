@@ -180,6 +180,8 @@ GEM
     open_uri_redirections (0.2.1)
     os (0.9.6)
     parallel (1.12.1)
+    parallel_tests (2.21.3)
+      parallel
     parser (2.5.1.0)
       ast (~> 2.4.0)
     powerpack (0.1.2)
@@ -289,6 +291,7 @@ DEPENDENCIES
   beaker-rspec
   facter (>= 1.7.0)
   metadata-json-lint
+  parallel_tests
   puppet (>= 5.5)
   puppet-blacksmith
   puppet-lint (>= 1.0.0)
