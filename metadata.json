@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "author": "mmarseglia",
   "summary": "Perforce client and server",
-  "license": "GPL-3.0+",
+  "license": "GPL-3.0-or-later",
   "source": "http://github.com/mmarseglia/puppet-perforce",
   "project_page": "http://github.com/mmarseglia/puppet-perforce",
   "issues_url": "https://github.com/mmarseglia/puppet-perforce/issues",
