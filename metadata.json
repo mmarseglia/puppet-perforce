@@ -1,24 +1,18 @@
 {
-  "name": "puppet-perforce",
-  "version": "0.0.3",
+  "name": "mmarseglia-perforce",
+  "version": "0.0.4",
   "author": "mmarseglia",
-  "license": "GPL-3.0-or-later",
   "summary": "Perforce client and server",
+  "license": "GPL-3.0-or-later",
   "source": "http://github.com/mmarseglia/puppet-perforce",
+  "project_page": "http://github.com/mmarseglia/puppet-perforce",
+  "issues_url": "https://github.com/mmarseglia/puppet-perforce/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 4.13.1 < 5.0.0"
     }
   ],
-  "requirements": [
-	  {
-			"name": "puppet",
-			"version_requirement": "5.x"
-		}
-  ],
-  "project_page": "http://github.com/mmarseglia/puppet-perforce",
-  "issues_url": "https://github.com/mmarseglia/puppet-perforce/issues",
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
@@ -27,5 +21,18 @@
       ]
     }
   ],
-	"tags": [ "perforce", "helix", "helixcore" ]
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "5.x"
+    }
+  ],
+  "tags": [
+    "perforce",
+    "helix",
+    "helixcore"
+  ],
+  "pdk-version": "1.8.0",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.8.0-0-g0d9da00"
 }
