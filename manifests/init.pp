@@ -9,6 +9,7 @@ class perforce (
   String $service_password,
   String $service_port,
   String $service_root,
+  Optional[String] $license_content,
   Optional[String] $service_ssldir,
 ){
 
@@ -17,11 +18,12 @@ class perforce (
   contain perforce::install
   contain perforce::configure
   contain perforce::service
+  contain perforce::license
 
   Class['::perforce::repository']
   -> Class['::perforce::package']
   -> Class['::perforce::install']
+  -> Class['::perforce::license']
   -> Class['::perforce::configure']
   ~> Class['::perforce::service']
-
 }

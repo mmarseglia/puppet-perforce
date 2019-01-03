@@ -9,6 +9,7 @@ describe 'perforce' do
     it { should contain_class('perforce::configure')}
     it { should contain_class('perforce::package')}
     it { should contain_class('perforce::repository')}
+    it { should contain_class('perforce::license')}
     it { should contain_class('perforce::service')}
 
     # perforce's main yum repository
@@ -35,5 +36,14 @@ describe 'perforce' do
 
     # perforce daemon configured to run on ssl
     it { is_expected.to contain_file('/opt/perforce/.p4config').with_content(/ssl:1666/) }
+  end
+
+  context 'with license' do
+	  let (:params) {{
+		  'license_content'	=> 'License:	1234567890ABCDEFGHIJK',
+	  }}
+
+	  # should create a license file in the perforce root directory
+	  it { is_expected.to contain_file('/opt/perforce/p4root/license').with_content(/License:	1234567890ABCDEFGHIJK/) }
   end
 end
