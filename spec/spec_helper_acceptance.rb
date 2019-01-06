@@ -9,7 +9,7 @@ install_puppet_agent_on(hosts)
 install_module_dependencies_on(hosts)
 
 # Install module and dependencies
-install_dev_puppet_module(:modulename => 'perforce')
+install_dev_puppet_module(modulename: 'perforce')
 
 RSpec.configure do |c|
   c.formatter = :documentation

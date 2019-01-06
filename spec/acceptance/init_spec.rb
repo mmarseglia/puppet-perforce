@@ -2,12 +2,10 @@
 require 'spec_helper_acceptance'
 
 describe 'install and configure perforce' do
-
   let(:pp) do
     <<-MANIFEST
       $user = 'perforce'
       $service_root = '/opt/perforce/p4root'
-  
       user { $user :
         ensure     => present,
         home       => $service_root,
@@ -23,25 +21,24 @@ describe 'install and configure perforce' do
   end
 
   it 'applies with no errors' do
-   apply_manifest(pp, catch_failures: true, debug: true)
+    apply_manifest(pp, catch_failures: true, debug: true)
   end
 
-  it 'should have packages installed' do
-    rpm_results = shell("rpm -qa | grep helix-p4d")
+  it 'installs packages' do
+    rpm_results = shell('rpm -qa | grep helix-p4d')
     expect(rpm_results.exit_code).to eq 0
   end
 
   describe service('p4d') do
-    it { should be_enabled }
-    it { should be_running }
+    it { is_expected.to be_enabled }
+    it { is_expected.to be_running }
   end
 
-  it 'applies a second time without changes'  do
+  it 'applies a second time without changes' do
     apply_manifest(pp, catch_changes: true)
   end
 
   context 'configure perforce with ssl' do
-
     let(:pp) do
       <<-MANIFEST
       $service_ssldir = "/opt/perforce/p4ssldir"
@@ -94,7 +91,6 @@ SUSxBKdUCRIml+kXJZPE0CC+DtPcv1pzPAFLCDNQwdreurKk+KE985RKanx9iZdS
 7RyghSDie7e/KhwfQjfreCUXSfV/3sAKajYv3LyWCc3WAE11Ugg8DUK+i55WikjC
 WA==
 -----END CERTIFICATE-----"
-
       file { $service_ssldir :
         ensure => directory,
         owner  => 'perforce',
@@ -123,13 +119,12 @@ WA==
     end
 
     describe service('p4d') do
-      it { should be_enabled }
-      it { should be_running }
+      it { is_expected.to be_enabled }
+      it { is_expected.to be_running }
     end
 
-    it 'applies a second time without changes'  do
+    it 'applies a second time without changes' do
       apply_manifest(pp, catch_changes: true)
     end
-
   end
 end

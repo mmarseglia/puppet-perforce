@@ -1,5 +1,6 @@
 ---
 sudo: false
+dist: trusty
 language: ruby
 cache: bundler
 before_install:
@@ -12,15 +13,29 @@ script:
   - 'bundle exec rake $CHECK'
 bundler_args: --without system_tests
 rvm:
-  - 2.4.1
+  - 2.4.4
 env:
   global:
-    - BEAKER_PUPPET_COLLECTION=puppet5 PUPPET_VERSION="~> 5.0"
-    - PARALLEL_TEST_PROCESSORS=16
+    - BEAKER_PUPPET_COLLECTION=puppet5 PUPPET_GEM_VERSION="~> 5.0"
 matrix:
   fast_finish: true
   include:
     -
-      env: CHECK=validate
+      env: CHECK="syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
     -
-      env: CHECK=spec
+      env: CHECK="parallel_spec"
+branches:
+  only:
+    - master
+    - /^v\d/
+notifications:
+  email: false
+deploy:
+  provider: puppetforge
+  user: puppet
+  password:
+    secure: ""
+  on:
+    tags: true
+    all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"
