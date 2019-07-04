@@ -17,5 +17,8 @@ class perforce::install {
     command     => 'systemctl daemon-reload',
     path        => [ '/usr/bin', '/bin', '/usr/sbin' ],
     refreshonly => true,
+    require     => [
+      Package[$perforce::packages],
+    ],
   }
 }

@@ -11,6 +11,7 @@ class perforce (
   String $service_root,
   Optional[String] $license_content,
   Optional[String] $service_ssldir,
+  Array[String]                  $packages,
 ){
 
   contain perforce::repository

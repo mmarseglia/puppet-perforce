@@ -6,3 +6,9 @@ perforce::service_root: '/opt/perforce/p4root'
 perforce::service_password: 'Password1!'
 perforce::service_ssldir: null
 perforce::license_content: null
+perforce::packages:
+  - 'helix-p4dctl'
+  - 'helix-proxy'
+  - 'helix-broker'
+  - 'helix-cli'
+  - 'helix-p4d'
