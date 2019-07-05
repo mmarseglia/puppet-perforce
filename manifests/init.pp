@@ -4,13 +4,15 @@
 # install and configure perforce
 #
 class perforce (
-  String $user,
-  String $service_name,
-  String $service_password,
-  String $service_port,
-  String $service_root,
-  Optional[String] $license_content,
-  Optional[String] $service_ssldir,
+  String                         $user,
+  String                         $service_name,
+  String                         $service_password,
+  Stdlib::Port                   $service_port,
+  Stdlib::AbsolutePath           $service_root,
+  Stdlib::AbsolutePath           $install_root,
+  Optional[String]               $license_content,
+  Optional[Stdlib::AbsolutePath] $service_ssldir,
+  Perforce::Version              $version,
   Array[String]                  $packages,
 ){
 
