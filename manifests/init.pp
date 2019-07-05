@@ -10,6 +10,7 @@ class perforce (
   Stdlib::Port                   $service_port,
   Stdlib::AbsolutePath           $service_root,
   Stdlib::AbsolutePath           $install_root,
+  Optional[Stdlib::HTTPSUrl]     $rpm_gpg_key_url,
   Optional[String]               $license_content,
   Optional[Stdlib::AbsolutePath] $service_ssldir,
   Perforce::Version              $version,
